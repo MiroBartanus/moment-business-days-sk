@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+
+# Gitlab Pages
+public/
+
+# Do not commit dotenv .env, use .env.example as a source for local .env
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+#
+ca/
+cert/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dist
+dist/
+*.tgz
