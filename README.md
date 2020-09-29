@@ -6,7 +6,7 @@ This is a momentJS plugin that allows you to work with only business days (Monda
 
 * This plugin uses [momentjs-business-days](https://github.com/kalmecak/moment-business-days).
 * This plugin sets the slovak locale (sk) format (DD/MM) and official annual slovak holidays.
-* 30. 10. 2018 is one-time exceptional holiday [100. výročie prijatia Deklarácie slovenského národa](https://www.google.com/search?q=30.+oktober+2018+sviatok)
+* 30.10.2018 is one-time exceptional holiday [100. výročie prijatia Deklarácie slovenského národa](https://www.google.com/search?q=30.+oktober+2018+sviatok)
 * This plugin computes Easter Sunday and adds Good Friday and Easter Monday to holiday
 * Computed easter sundays are cached afterwards for later use
 * It is possible to add additional, custom annual holidays (for local or district holidays) with slovak format (DD/MM).
@@ -26,9 +26,6 @@ var moment = require('moment-business-days-sk');
 ````
 
 ### Add a custom holiday
-
-** Note that only fixed holidays are supported on this version **
-** You may overwrite the holiday function or submit a PR for determining the other holidays **
 
 ````javascript
 var moment = require('moment-business-days-sk');
