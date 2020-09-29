@@ -4,7 +4,7 @@
   "description": "MomentJS plugin to use business days with slovak holidays",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bartanus/moment-business-days-sk.git"
+    "url": "https://github.com/mirobartanus/moment-business-days-sk.git"
   },
   "keywords": [
     "business",
@@ -14,8 +14,8 @@
     "plugin",
     "slovak"
   ],
-  "author": "Miro Bartanus <miroslav.bartanush@gmail.com>",
-  "homepage": "https://github.com/bartanus/moment-business-days-sk",
+  "author": "Miro Bartanus <miroslav.bartanus@gmail.com>",
+  "homepage": "https://github.com/mirobartanus/moment-business-days-sk",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
