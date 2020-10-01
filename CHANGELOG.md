@@ -1,4 +1,4 @@
-# Changelog
+# Changelog for 'moment-business-days-sk' package
 
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -6,6 +6,12 @@ GNU standard changelog format [GNU changelog style guide](https://www.gnu.org/pr
 is not sufficient.
 
 ## [Unreleased]
+
+- Work in progress
+
+## [1.0.0] - 2020-10-01
+
+- release
 
 ## [0.0.2] - 2020-01-31
 
@@ -21,6 +27,7 @@ is not sufficient.
 - The very first JavaScript version
 
 [unreleased]: https://github.com/mirobartanus/moment-business-days-sk/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/mirobartanus/moment-business-days-sk/compare/v0.0.2...v1.0.0
 [0.0.2]: https://github.com/mirobartanus/moment-business-days-sk/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/mirobartanus/moment-business-days-sk/releases/tag/v0.0.1
 

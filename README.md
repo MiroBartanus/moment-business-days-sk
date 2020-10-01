@@ -4,30 +4,56 @@ This is a momentJS plugin that allows you to work with only business days (Monda
 
 ## Notes
 
-* This plugin uses [momentjs-business-days](https://github.com/kalmecak/moment-business-days).
-* This plugin sets the slovak locale (sk) format (DD/MM) and official annual slovak holidays.
-* 30.10.2018 is one-time exceptional holiday [100. výročie prijatia Deklarácie slovenského národa](https://www.google.com/search?q=30.+oktober+2018+sviatok)
-* This plugin computes Easter Sunday and adds Good Friday and Easter Monday to holiday
-* Computed easter sundays are cached afterwards for later use
-* It is possible to add additional, custom annual holidays (for local or district holidays) with slovak format (DD/MM).
-* For the documentation see [momentjs-business-days](https://github.com/kalmecak/moment-business-days) and [moment](https://momentjs.com/docs/).
-* All contributions are welcome.
+- This plugin uses [momentjs-business-days](https://github.com/kalmecak/moment-business-days).
+- This plugin sets the slovak locale (sk) format (DD/MM) and official annual slovak holidays.
+- 30.10.2018 is one-time exceptional holiday [100. výročie prijatia Deklarácie slovenského národa](https://www.google.com/search?q=30.+oktober+2018+sviatok)
+- This plugin computes Easter Sunday and adds Good Friday and Easter Monday to holiday
+- Computed easter sundays are cached afterwards for later use
+- It is possible to add additional, custom annual holidays (for local or district holidays) with slovak format (DD/MM).
+- For the documentation see [momentjs-business-days](https://github.com/kalmecak/moment-business-days) and [moment](https://momentjs.com/docs/).
+- Project [changelog](CHANGELOG.md)
+- All contributions are welcome.
 
 ## Install
 
-````bash
+```bash
 $ npm install --save moment-business-days-sk
-````
+```
 
-## Usage
+## Usage TypeScript
 
-````javascript
+```javascript
+import { Moment } from 'moment';
+import moment from 'moment-business-days-sk';
+
+let easterSun = moment().easter(2020) as Moment; // Easter Sunday
+
+let workingThu: Moment = moment(easterSun).prevBusinessDay(); // Thursday
+let goodFri: Moment = moment(easterSun).subtract(2, 'd'); // Good Friday
+let whiteSat: Moment = moment(easterSun).subtract(1, 'd'); // Easter Monday
+let easterMon: Moment = moment(easterSun).add(1, 'd'); // Easter Monday
+let workingTue: Moment = moment(easterSun).nextBusinessDay(); // Tuesday
+
+console.log('%s isBusinessDay: %s', workingThu, workingThu.isBusinessDay());
+console.log('%s isBusinessDay: %s', goodFri, goodFri.isBusinessDay());
+console.log('%s isBusinessDay: %s', whiteSat, whiteSat.isBusinessDay());
+console.log('%s isBusinessDay: %s', easterSun, easterSun.isBusinessDay());
+console.log('%s isBusinessDay: %s', easterMon, easterMon.isBusinessDay());
+console.log('%s isBusinessDay: %s', workingTue, workingTue.isBusinessDay());
+```
+
+## Usage JavaScript
+
+```javascript
 var moment = require('moment-business-days-sk');
-````
+
+console.log(moment('2020-10-01').isHoliday()); // false
+console.log(moment().easter(2020)); // Moment<2020-04-12T00:00:00+02:00>
+```
 
 ### Add a custom holiday
 
-````javascript
+```javascript
 var moment = require('moment-business-days-sk');
 
 /*
@@ -61,7 +87,7 @@ moment-business-days-sk slovak holidays:
     '30/10/2018', // 100. výročie prijatia Deklarácie slovenského národa
  ]
 */
-````
+```
 
 ### Run Tests
 
@@ -72,28 +98,28 @@ moment-business-days-sk slovak holidays:
 **isHoliday**
 
 ```javascript
-moment('2019-01-01').isHoliday() // true
-moment('2019-11-14').isHoliday() // false
+moment('2019-01-01').isHoliday(); // true
+moment('2019-11-14').isHoliday(); // false
 ```
 
 **easter**
 
 ```javascript
 // 21.4.2019 is Easter Sunday
-let easter = moment.easter(2019);
+let easter = moment().easter(2019);
 
-easter.month() // 3 (4-1 = 3)
-easter.date() // 21
+easter.month(); // 3 (4-1 = 3)
+easter.date(); // 21
 
 // Two days before each Easter is Friday and is holiday
 let easterFriday = moment(easter).subtract(2, 'd');
-easterFriday.day() // 5 ... friday
-easterFriday.isHoliday() // true
+easterFriday.day(); // 5 ... friday
+easterFriday.isHoliday(); // true
 
 // Next day after each Easter is Monday
 let easterMonday = moment(easter).add(1, 'd');
-easterMonday.day() // 1 ... Monday
-easterMonday.isHoliday() // true
+easterMonday.day(); // 1 ... Monday
+easterMonday.isHoliday(); // true
 ```
 
 **isBusinessDay**
@@ -113,25 +139,25 @@ if (day.isBusinessDay()) {
 **prevBusinessDay, nextBusinessDay**
 
 ```javascript
-let easter = moment.easter(2019);
+let easter = moment().easter(2019);
 
 let prevBusinessDay = moment(easter).prevBusinessDay();
-prevBusinessDay.isHoliday() // false
-prevBusinessDay.day() // 4 ... Thursday
+prevBusinessDay.isHoliday(); // false
+prevBusinessDay.day(); // 4 ... Thursday
 
 let nextBusinessDay = moment(easter).nextBusinessDay();
-nextBusinessDay.isHoliday() // false
-nextBusinessDay.day() // 4 ... Tuesday
+nextBusinessDay.isHoliday(); // false
+nextBusinessDay.day(); // 4 ... Tuesday
 ```
 
 **lastBusinessDayOfThisMonth**
 
 ```javascript
-let today = moment().startOf('day')
+let today = moment().startOf('day');
 
 let firstDayOfNextMonth = moment(currDay).add(1, 'month').startOf('month');
 let lastBusinessDayOfCurrMonth = moment(firstDayOfNextMonth).prevBusinessDay();
-lastBusinessDayOfCurrMonth.isBusinessDay() // true
+lastBusinessDayOfCurrMonth.isBusinessDay(); // true
 ```
 
 ## Methods from [moment-business-days](https://www.npmjs.com/package/moment-business-days)
@@ -142,7 +168,7 @@ Will add just business days excluding Saturday and Sunday, return a moment date 
 
 ```javascript
 // 30-01-2015 is Friday, DD-MM-YYYY is the format
-moment('30-01-2015', 'DD-MM-YYYY').businessAdd(3)._d // Wed Feb 04 2015 00:00:00 GMT-0600 (CST)
+moment('30-01-2015', 'DD-MM-YYYY').businessAdd(3)._d; // Wed Feb 04 2015 00:00:00 GMT-0600 (CST)
 ```
 
 **businessSubtract(days)**
@@ -151,19 +177,19 @@ Will subtract just business days excluding Saturday and Sunday, return a moment 
 
 ```javascript
 // 27-01-2015 is Tuesday, DD-MM-YYYY is the format
-moment('27-01-2015', 'DD-MM-YYYY').businessSubtract(3)._d // Thu Jan 22 2015 00:00:00 GMT-0600 (CST)
+moment('27-01-2015', 'DD-MM-YYYY').businessSubtract(3)._d; // Thu Jan 22 2015 00:00:00 GMT-0600 (CST)
 ```
 
 **isBusinessDay()**
 
-Check if the date is a business day and return  **true**/**false**:
+Check if the date is a business day and return **true**/**false**:
 
 ```javascript
 // 31-01-2015 is Saturday
-moment('31-01-2015', 'DD-MM-YYYY').isBusinessDay() // false
+moment('31-01-2015', 'DD-MM-YYYY').isBusinessDay(); // false
 
 // 30-01-2015 is Friday
-moment('30-01-2015', 'DD-MM-YYYY').isBusinessDay() // true
+moment('30-01-2015', 'DD-MM-YYYY').isBusinessDay(); // true
 ```
 
 **nextBusinessDay()**
@@ -172,10 +198,10 @@ Will retrieve the next business date as moment date object:
 
 ```javascript
 //Next busines day of Friday 30-01-2015
-moment('30-01-2015', 'DD-MM-YYYY').nextBusinessDay()._d // Mon Feb 02 2015 00:00:00 GMT-0600 (CST)
+moment('30-01-2015', 'DD-MM-YYYY').nextBusinessDay()._d; // Mon Feb 02 2015 00:00:00 GMT-0600 (CST)
 
 //Next busines day of Monday 02-02-2015
-moment('02-02-2015', 'DD-MM-YYYY').nextBusinessDay()._d //Tue Feb 03 2015 00:00:00 GMT-0600 (CST)
+moment('02-02-2015', 'DD-MM-YYYY').nextBusinessDay()._d; //Tue Feb 03 2015 00:00:00 GMT-0600 (CST)
 ```
 
 **prevBusinessDay()**
@@ -184,10 +210,10 @@ Will retrieve the previous business date as moment date object:
 
 ```javascript
 //Previous busines day of Monday 02-02-2015
-moment('02-02-2015', 'DD-MM-YYYY').prevBusinessDay()._d // Fri Jan 30 2015 00:00:00 GMT-0600 (CST)
+moment('02-02-2015', 'DD-MM-YYYY').prevBusinessDay()._d; // Fri Jan 30 2015 00:00:00 GMT-0600 (CST)
 
 //Previous busines day of Tuesday 03-02-2015
-moment('03-02-2015', 'DD-MM-YYYY').prevBusinessDay()._d //Mon Feb 02 2015 00:00:00 GMT-0600 (CST)
+moment('03-02-2015', 'DD-MM-YYYY').prevBusinessDay()._d; //Mon Feb 02 2015 00:00:00 GMT-0600 (CST)
 ```
 
 **monthBusinessDays()**
@@ -196,7 +222,7 @@ Retrieve an array of the business days in the month, each one is a moment object
 
 ```javascript
 //Busines days in month January 2015
-moment('01-01-2015', 'DD-MM-YYYY').monthBusinessDays()
+moment('01-01-2015', 'DD-MM-YYYY').monthBusinessDays();
 
 /*
 [ { _isAMomentObject: true,
@@ -224,7 +250,7 @@ Retrieve an array of arrays, these arrays are the representation of a business w
 
 ```javascript
 //Busines weeks in month January 2015
-moment('01-01-2015', 'DD-MM-YYYY').monthBusinessWeeks()
+moment('01-01-2015', 'DD-MM-YYYY').monthBusinessWeeks();
 
 /*
 [ [ { _isAMomentObject: true,
@@ -258,6 +284,6 @@ The objects returned by functions are momentjs objects (**except isBusinessDay**
 Calculate number of busines days between dates.
 
 ```javascript
-var diff = moment('05-15-2017', 'MM-DD-YYYY').businessDiff(moment('05-08-2017','MM-DD-YYYY'));
+var diff = moment('05-15-2017', 'MM-DD-YYYY').businessDiff(moment('05-08-2017', 'MM-DD-YYYY'));
 // diff = 5
 ```
