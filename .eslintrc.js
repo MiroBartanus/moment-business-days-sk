@@ -1,0 +1,24 @@
+module.exports = {
+  root: true,
+
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: 'module', // Allows for the use of imports
+    project: ['./tsconfig.json'],
+  },
+  rules: {
+    //    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-mutable-exports': 0,
+    'no-labels': 0,
+    'no-restricted-syntax': 0,
+  },
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:eslint-comments/recommended',
+    'plugin:promise/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+  ],
+};

@@ -1,0 +1,11 @@
+{
+  "package": "./package.json",
+  "extension": ["ts"],
+  "spec": ["test/**/*.spec.ts"],
+  "recursive": true,
+  "file": [],
+  "require": ["ts-node/register", "source-map-support/register"],
+  "ui": "bdd",
+  "exit": true,
+  "slow": "10"
+}

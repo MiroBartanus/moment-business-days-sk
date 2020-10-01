@@ -2,22 +2,19 @@
   "include": ["src/**/*"],
 
   "compilerOptions": {
+    "strict": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "es6",
-    "noImplicitAny": true,
     "moduleResolution": "node",
 
     "declaration": true,
     "declarationMap": true,
-    "strictNullChecks": true,
+
     "resolveJsonModule": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "preserveConstEnums": true,
 
     "sourceMap": true,
     "outDir": "dist",
-    "removeComments": false
+    "removeComments": true
   }
 }

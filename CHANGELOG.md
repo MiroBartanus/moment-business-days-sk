@@ -20,7 +20,6 @@ is not sufficient.
 
 - The very first JavaScript version
 
-
 [unreleased]: https://github.com/mirobartanus/moment-business-days-sk/compare/v1.0.0...HEAD
 [0.0.2]: https://github.com/mirobartanus/moment-business-days-sk/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/mirobartanus/moment-business-days-sk/releases/tag/v0.0.1
